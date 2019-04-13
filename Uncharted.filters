@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{ca847c63-af8a-46c7-82e7-30363815f1ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TgaImage">
+      <UniqueIdentifier>{ed86c833-51a2-4719-a764-f1e0de3ea7d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main\Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="TgaImage\tgaimage.cpp">
+      <Filter>TgaImage</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TgaImage\tgaimage.h">
+      <Filter>TgaImage</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
