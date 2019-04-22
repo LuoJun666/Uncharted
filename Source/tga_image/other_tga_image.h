@@ -1,6 +1,7 @@
 #ifndef __IMAGE_H__
 #define __IMAGE_H__
 
+#include <vector>
 #include <fstream>
 
 #pragma pack(push,1)
@@ -23,6 +24,7 @@ struct TGA_Header {
 struct TGAColor {
     unsigned char bgra[4];
     unsigned char bytespp;
+	std::vector<int> aList;
 
     TGAColor() : bgra(), bytespp(1) {
         for (int i=0; i<4; i++) bgra[i] = 0;
@@ -67,7 +69,7 @@ protected:
     int height;
     int bytespp;
 
-    bool   load_rle_data(std::ifstream &in);
+    bool load_rle_data(std::ifstream &in);
     bool unload_rle_data(std::ofstream &out);
 public:
     enum Format {

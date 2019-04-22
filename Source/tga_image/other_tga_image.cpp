@@ -3,7 +3,9 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#include "tga_image.h"
+#include "other_tga_image.h"
+
+#define MAX_LORD_PLAYER 3
 
 TGAImage::TGAImage() : data(NULL), width(0), height(0), bytespp(0) {}
 
@@ -23,7 +25,7 @@ TGAImage::~TGAImage() {
     if (data) delete [] data;
 }
 
-TGAImage & TGAImage::operator =(const TGAImage &img) {
+/* TGAImage & TGAImage::operator =(const TGAImage &img) {
     if (this != &img) {
         if (data) delete [] data;
         width  = img.width;
@@ -34,7 +36,7 @@ TGAImage & TGAImage::operator =(const TGAImage &img) {
         memcpy(data, img.data, nbytes);
     }
     return *this;
-}
+} */
 
 bool TGAImage::read_tga_file(const char *filename) {
     if (data) delete [] data;
@@ -70,7 +72,7 @@ bool TGAImage::read_tga_file(const char *filename) {
             std::cerr << "an error occured while reading the data\n";
             return false;
         }
-    } else if (10==header.datatypecode||11==header.datatypecode) {
+    }   else if (10==header.datatypecode||11==header.datatypecode) {
         if (!load_rle_data(in)) {
             in.close();
             std::cerr << "an error occured while reading the data\n";
