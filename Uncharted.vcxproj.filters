@@ -13,6 +13,9 @@
     <Filter Include="image">
       <UniqueIdentifier>{dd969e30-85ec-4c02-8365-74cbe39e118c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{6d2dd5c7-4b57-4142-ac9b-7019fbebd1a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uncharted\platform\platform.h">
@@ -33,6 +36,12 @@
     <ClInclude Include="uncharted\image\other_tga_image.h">
       <Filter>image</Filter>
     </ClInclude>
+    <ClInclude Include="uncharted\math\vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="uncharted\gl\render.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp">
@@ -40,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="uncharted\image\other_tga_image.cpp">
       <Filter>image</Filter>
+    </ClCompile>
+    <ClCompile Include="uncharted\gl\render.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

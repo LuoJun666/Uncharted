@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="uncharted\gl\render.h" />
     <ClInclude Include="uncharted\image\other_tga_image.h" />
+    <ClInclude Include="uncharted\math\vector3.h" />
     <ClInclude Include="uncharted\platform\platform.h" />
     <ClInclude Include="uncharted\platform\platform_common_type.h" />
     <ClInclude Include="uncharted\platform\platform_global_type.h" />
@@ -27,6 +29,7 @@
     <ClInclude Include="uncharted\platform\windows\platform_windows_window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="uncharted\gl\render.cpp" />
     <ClCompile Include="uncharted\image\other_tga_image.cpp" />
     <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp" />
   </ItemGroup>
