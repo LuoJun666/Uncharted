@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef PLATFORM_WINDOWS
-#define PLATFORM_WINDOWS 0
+#if defined(_WIN32)
+#define PLATFORM_WINDOWS 1
 #endif
 
-#ifdef PLATFORM_WINDOWS
-#include "platform/windows/platform_windows.h"
+#if defined(PLATFORM_WINDOWS)
+#include "platform/windows/platform_windows_type.h"
 #endif 
 
 //~ Unsigned base types.
@@ -20,7 +20,7 @@ typedef PlatformTypes::uint64		uint64;
 
 //~ Signed base types.
 /// An 8-bit signed integer.
-typedef	PlatformTypes::int8		int8;
+typedef	PlatformTypes::int8		    int8;
 /// A 16-bit signed integer.
 typedef PlatformTypes::int16		int16;
 /// A 32-bit signed integer.
@@ -34,7 +34,7 @@ typedef PlatformTypes::ANSICHAR	ANSICHAR;
 /// A wide character. Normally a signed type.
 typedef PlatformTypes::WIDECHAR	WIDECHAR;
 /// Either ANSICHAR or WIDECHAR, depending on whether the platform supports wide characters or the requirements of the licensee.
-typedef PlatformTypes::TCHAR		TCHAR;
+//typedef PlatformTypes::TCHAR		TCHAR;
 /// An 8-bit character containing a UTF8 (Unicode, 8-bit, variable-width) code unit.
 typedef PlatformTypes::CHAR8		UTF8CHAR;
 /// A 16-bit character containing a UCS2 (Unicode, 16-bit, fixed-width) code unit, used for compatibility with 'Windows TCHAR' across multiple platforms.

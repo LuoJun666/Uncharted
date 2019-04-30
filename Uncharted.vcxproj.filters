@@ -1,34 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\main\Main.cpp" />
-    <ClCompile Include="Source\tga_image\other_tga_image.cpp">
-      <Filter>tga_image</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Platform">
       <UniqueIdentifier>{3d723191-1fcd-46ce-8708-1a78d6b8951a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="tga_image">
-      <UniqueIdentifier>{dd969e30-85ec-4c02-8365-74cbe39e118c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\windows">
       <UniqueIdentifier>{8d4a2f42-f73e-4774-991a-c46cce06d365}</UniqueIdentifier>
     </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{cde8f7e5-4584-4427-95e9-7f822df5a5fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="image">
+      <UniqueIdentifier>{dd969e30-85ec-4c02-8365-74cbe39e118c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\platform\platform.h">
+    <ClInclude Include="uncharted\platform\platform.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="Source\platform\platform_common_type.h">
+    <ClInclude Include="uncharted\platform\platform_common_type.h">
       <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="Source\platform\windows\platform_windows.h">
+    <ClInclude Include="uncharted\platform\platform_global_type.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="uncharted\platform\windows\platform_windows_type.h">
       <Filter>Platform\windows</Filter>
     </ClInclude>
-    <ClInclude Include="Source\tga_image\other_tga_image.h">
-      <Filter>tga_image</Filter>
+    <ClInclude Include="uncharted\platform\windows\platform_windows_window.h">
+      <Filter>Platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="uncharted\image\other_tga_image.h">
+      <Filter>image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp">
+      <Filter>Platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="uncharted\image\other_tga_image.cpp">
+      <Filter>image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
