@@ -87,23 +87,23 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)Source\;$(IncludePath)</IncludePath>
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)lib\</OutDir>
-    <IntDir>$(SolutionDir)temp\</IntDir>
+    <OutDir>$(SolutionDir)Release\lib\</OutDir>
+    <IntDir>$(SolutionDir)Release\temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)lib\</OutDir>
-    <IntDir>$(SolutionDir)temp\</IntDir>
+    <OutDir>$(SolutionDir)Release\lib\</OutDir>
+    <IntDir>$(SolutionDir)Release\temp\</IntDir>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)lib\</OutDir>
-    <IntDir>$(SolutionDir)temp\</IntDir>
+    <OutDir>$(SolutionDir)Release\lib\</OutDir>
+    <IntDir>$(SolutionDir)Release\temp\</IntDir>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)lib\</OutDir>
-    <IntDir>$(SolutionDir)temp\</IntDir>
+    <OutDir>$(SolutionDir)Release\lib\</OutDir>
+    <IntDir>$(SolutionDir)Release\temp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

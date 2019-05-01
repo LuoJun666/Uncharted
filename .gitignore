@@ -1,5 +1,4 @@
 Debug/
 .vs/
 *.user
-lib/
-temp/
+Release/
