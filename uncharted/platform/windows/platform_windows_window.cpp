@@ -1,6 +1,7 @@
 #include "platform_windows_window.h"
 
 #include <tchar.h>
+#include "gl/Color.h"
 
 static bool g_exit = false;
 
@@ -92,59 +93,67 @@ int Window::Create(int width, int height, const std::wstring& title)
         DWORD      biClrImportant;
     } BITMAPINFOHEADER*/
 
-    BITMAPINFO bi = { { sizeof(BITMAPINFOHEADER), width, height, 1, 32, BI_RGB,
-        width * height * 4, 0, 0, 0, 0 } };
+    BITMAPINFO bi =
+    { 
+        sizeof(BITMAPINFOHEADER), 
+        width, 
+        height, 
+        1, 
+        32, 
+        BI_RGB,
+        (DWORD)(width * height * 4), 
+        0, 
+        0, 
+        0, 
+        0 
+    };
+
     HDC dc = GetDC(hwnd_);
     hdc_ = CreateCompatibleDC(dc);
     ReleaseDC(hwnd_, dc);
-    screen_hb = CreateDIBSection(hdc_, &bi, DIB_RGB_COLORS, (void**)&frame_buffer_, 0, 0);
-    if (screen_hb == NULL) return -3;
+
+    int32* temp = nullptr;
+    screen_hb = CreateDIBSection(hdc_, &bi, DIB_RGB_COLORS, (void**)&temp, 0, 0);
+    if (screen_hb == NULL)
+    {
+        return -3;
+    }
+    frame_buffer_ = new int32 * [height_];
+    for (int y = 0; y < height_; ++y)
+    {
+        frame_buffer_[y] = temp;
+        temp += width;
+    }
 
     screen_ob = (HBITMAP)SelectObject(hdc_, screen_hb);
-
     ShowWindow(hwnd_, SW_NORMAL);
     DispatchWinMessage();
+
+    SetBackgroundColor(Color(255, 255, 255).Get());
 
     return 0;
 }
 
-void Window::Run() 
+void Window::Update() 
 {
-    static int a = 0;
-
-    int color_top_half = ((int)(1.0f * 255.0f) << 16) | ((int)(0.5f * 255.0f) << 8) | ((int)(0 * 255.0f));
-    int color_bottom_half = ((int)(0 * 255.0f) << 16) | ((int)(0.7 * 255.0f) << 8) | ((int)(1.0 * 255.0f));
-    int* temp = frame_buffer_;
-    for (int y = 0; y < height_; ++y)
-    {
-        int color;
-        if (y >= height_ / 2)
-        {
-            color = a % 2 == 0 ? color_top_half : color_bottom_half;
-        }
-        else
-        {
-            color = a % 2 == 0 ? color_bottom_half : color_top_half;
-        }
-
-        for (int x = 0; x < width_; ++x)
-        {
-            temp[x] = color;
-        }
-        temp += width_;
-    }
-    a++;
-
     HDC hDC = GetDC(hwnd_);
     BitBlt(hDC, 0, 0, width_, height_, hdc_, 0, 0, SRCCOPY);
     ReleaseDC(hwnd_, hDC);
     DispatchWinMessage();
-    Sleep(1000);
 }
 
 bool Window::IsExit()
 {
     return g_exit;
+}
+
+void Window::SetPixel(int32 x, int32 y, int32 color) 
+{
+    if (y < 0 || x < 0) return;
+
+    x = std::min<int32>(x, width_ - 1);
+    y = std::min<int32>(y, height_ - 1);
+    frame_buffer_[y][x] = color;
 }
 
 void Window::DispatchWinMessage() 
@@ -155,5 +164,16 @@ void Window::DispatchWinMessage()
         if (!PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE)) break;
         if (!GetMessage(&msg, NULL, 0, 0)) break;
         DispatchMessage(&msg);
+    }
+}
+
+void Window::SetBackgroundColor(int32 color)
+{
+    for (int32 y = 0; y < height_; ++y)
+    {
+        for (int32 x = 0; x < width_; ++x)
+        {
+            frame_buffer_[y][x] = color;
+        }
     }
 }

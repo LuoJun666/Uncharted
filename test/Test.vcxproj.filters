@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="draw_line_sample.cpp">
+      <Filter>samples</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="samples">
+      <UniqueIdentifier>{12d36fed-9392-4f4d-b036-270ba06ce4c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="draw_line_sample.h">
+      <Filter>samples</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

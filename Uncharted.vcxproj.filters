@@ -42,6 +42,9 @@
     <ClInclude Include="uncharted\gl\render.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="uncharted\gl\color.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp">

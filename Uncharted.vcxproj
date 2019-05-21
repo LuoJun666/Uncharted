@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="uncharted\gl\color.h" />
     <ClInclude Include="uncharted\gl\render.h" />
     <ClInclude Include="uncharted\image\other_tga_image.h" />
     <ClInclude Include="uncharted\math\vector3.h" />
@@ -87,23 +88,23 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)Source\;$(IncludePath)</IncludePath>
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)Release\lib\</OutDir>
-    <IntDir>$(SolutionDir)Release\temp\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)_temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Release\lib\</OutDir>
-    <IntDir>$(SolutionDir)Release\temp\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)_temp\</IntDir>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Release\lib\</OutDir>
-    <IntDir>$(SolutionDir)Release\temp\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)_temp\</IntDir>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetExt>.lib</TargetExt>
-    <OutDir>$(SolutionDir)Release\lib\</OutDir>
-    <IntDir>$(SolutionDir)Release\temp\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)_temp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
