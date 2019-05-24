@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uncharted\gl\color.h" />
+    <ClInclude Include="uncharted\gl\Point.h" />
     <ClInclude Include="uncharted\gl\render.h" />
     <ClInclude Include="uncharted\image\other_tga_image.h" />
     <ClInclude Include="uncharted\math\vector3.h" />
@@ -28,8 +29,10 @@
     <ClInclude Include="uncharted\platform\platform_global_type.h" />
     <ClInclude Include="uncharted\platform\windows\platform_windows_type.h" />
     <ClInclude Include="uncharted\platform\windows\platform_windows_window.h" />
+    <ClInclude Include="uncharted\util\random.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="uncharted\gl\color.cpp" />
     <ClCompile Include="uncharted\gl\render.cpp" />
     <ClCompile Include="uncharted\image\other_tga_image.cpp" />
     <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp" />
@@ -112,7 +115,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)uncharted/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)uncharted\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>

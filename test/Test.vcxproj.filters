@@ -2,7 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="draw_line_sample.cpp">
+    <ClCompile Include="samples\sample_base.cpp">
+      <Filter>samples</Filter>
+    </ClCompile>
+    <ClCompile Include="samples\sample_draw_primitive.cpp">
       <Filter>samples</Filter>
     </ClCompile>
   </ItemGroup>
@@ -12,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="draw_line_sample.h">
+    <ClInclude Include="samples\sample_base.h">
+      <Filter>samples</Filter>
+    </ClInclude>
+    <ClInclude Include="samples\sample_draw_primitive.h">
       <Filter>samples</Filter>
     </ClInclude>
   </ItemGroup>

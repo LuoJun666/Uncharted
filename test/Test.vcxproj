@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="draw_line_sample.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="samples\sample_base.cpp" />
+    <ClCompile Include="samples\sample_draw_primitive.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="draw_line_sample.h" />
+    <ClInclude Include="samples\sample_base.h" />
+    <ClInclude Include="samples\sample_draw_primitive.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

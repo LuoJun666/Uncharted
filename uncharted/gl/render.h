@@ -1,8 +1,10 @@
 #pragma once
-#include "platform/platform.h"
-#include "math/vector3.h"
 
-struct Color;
+#include <vector>
+#include "gl/Point.h"
+#include "platform/platform.h"
+
+//class Window;
 
 class Render
 {
@@ -11,11 +13,20 @@ public:
     explicit Render(Window* window);
 
 public:
-    void DrawPiexl(int32 x, int32 y, int32 color);
+    void DrawLine(const unc::Point& start, const unc::Point& end);
 
-    void DrawLine(const Point& start, const Point& end, const Color& color);
+    void DrawTrangleWireframe(const std::vector<unc::Point>& point_list);
 
-    void DrawTrangle(const Point* points, int point_count);
+    void DrawTrangle(const std::vector<unc::Point>& point_list);
+
+    void ClearWindow();
+
+    int32 GetScreenWidth() const;
+
+    int32 GetScreenHeight() const;
+
+private:
+    void SortPointToClockwise(std::vector<unc::Point>& point_list);
 
 private:
     Window* window_;

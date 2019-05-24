@@ -11,6 +11,7 @@ Window::Window()
     , height_(0)
     , frame_buffer_(nullptr)
     , hdc_(nullptr)
+    , color_(0)
 {
 }
 
@@ -129,7 +130,7 @@ int Window::Create(int width, int height, const std::wstring& title)
     ShowWindow(hwnd_, SW_NORMAL);
     DispatchWinMessage();
 
-    SetBackgroundColor(Color(255, 255, 255).Get());
+    SetBackgroundColor(unc::Color(255, 255, 255).GetInt32());
 
     return 0;
 }
@@ -176,4 +177,5 @@ void Window::SetBackgroundColor(int32 color)
             frame_buffer_[y][x] = color;
         }
     }
+    color_ = color;
 }

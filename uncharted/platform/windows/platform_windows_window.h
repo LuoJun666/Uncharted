@@ -18,7 +18,13 @@ public:
 
     void SetPixel(int32 x, int32 y, int32 color);
 
+    void Clear() { SetBackgroundColor(color_); }
+
     void SetBackgroundColor(int32 color);
+
+    int32 GetWidth() const { return width_; }
+
+    int32 GetHeight() const { return height_; }
 
 private:
     void DispatchWinMessage();
@@ -29,4 +35,5 @@ private:
     int32 width_;
     int32 height_;
     int32** frame_buffer_;
+    int32 color_;
 };

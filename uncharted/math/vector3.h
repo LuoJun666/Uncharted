@@ -11,7 +11,10 @@ public:
     float z;
 
 public:
-    Vector3() = delete;
+    Vector3()
+    {
+        Set(0.0f, 0.0f, 0.0f);
+    }
     
     explicit Vector3(float v)
     {
@@ -22,9 +25,7 @@ public:
 
     Vector3(float vx, float vy, float vz)
     {
-        x = vx;
-        y = vy;
-        z = vz;
+        Set(vx, vy, vz);
     }
 
     Vector3(int32 vx, int32 vy, int32 vz)
@@ -32,6 +33,40 @@ public:
         x = static_cast<float>(vx);
         y = static_cast<float>(vy);
         z = static_cast<float>(vz);
+    }
+
+    Vector3(int32 vx, int32 vy)
+    {
+        x = static_cast<float>(vx);
+        y = static_cast<float>(vy);
+        z = 0;
+    }
+
+    Vector3& operator =(const Vector3& other)
+    {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+        return *this;
+    }
+
+    Vector3(const Vector3& other)
+    {
+        *this = other;
+    }
+
+    void Set(int32 vx, int32 vy, int32 vz)
+    {
+        x = static_cast<float>(vx);
+        y = static_cast<float>(vy);
+        z = static_cast<float>(vz);
+    }
+
+    void Set(float vx, float vy, float vz)
+    {
+        x = vx;
+        y = vy;
+        z = vz;
     }
 
     Vector3 operator +(float v) const
@@ -91,8 +126,6 @@ public:
      */
     float Size() const
     {
-        return std::sqrt(x * x + x * x + z * z);
+        return std::sqrt(x * x + y * y + z * z);
     }
 };
-
-typedef Vector3 Point;

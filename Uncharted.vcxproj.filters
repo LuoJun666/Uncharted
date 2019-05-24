@@ -16,6 +16,9 @@
     <Filter Include="render">
       <UniqueIdentifier>{6d2dd5c7-4b57-4142-ac9b-7019fbebd1a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{eb67a966-6db1-4718-a59d-5495ca243265}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uncharted\platform\platform.h">
@@ -45,6 +48,12 @@
     <ClInclude Include="uncharted\gl\color.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="uncharted\util\random.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="uncharted\gl\Point.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uncharted\platform\windows\platform_windows_window.cpp">
@@ -54,6 +63,9 @@
       <Filter>image</Filter>
     </ClCompile>
     <ClCompile Include="uncharted\gl\render.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="uncharted\gl\color.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
