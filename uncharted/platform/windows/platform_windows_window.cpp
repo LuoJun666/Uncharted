@@ -70,8 +70,6 @@ int Window::Create(int width, int height, const std::wstring& title)
     WNDCLASS wc = { CS_BYTEALIGNCLIENT, (WNDPROC)OnWinMessage, 0, 0, 0,
                     nullptr, nullptr, nullptr, nullptr, _T("SCREEN3.1415926") };
 
-    //screen_close();
-
     wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
     wc.hInstance = GetModuleHandle(NULL);
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
@@ -115,7 +113,7 @@ int Window::Create(int width, int height, const std::wstring& title)
 
     int32* temp = nullptr;
     screen_hb = CreateDIBSection(hdc_, &bi, DIB_RGB_COLORS, (void**)&temp, 0, 0);
-    if (screen_hb == NULL)
+    if (screen_hb == nullptr)
     {
         return -3;
     }
@@ -126,11 +124,11 @@ int Window::Create(int width, int height, const std::wstring& title)
         temp += width;
     }
 
+    SetBackgroundColor(unc::Color(51, 76, 76).GetInt32());
+
     screen_ob = (HBITMAP)SelectObject(hdc_, screen_hb);
     ShowWindow(hwnd_, SW_NORMAL);
     DispatchWinMessage();
-
-    SetBackgroundColor(unc::Color(255, 255, 255).GetInt32());
 
     return 0;
 }
@@ -150,14 +148,12 @@ bool Window::IsExit()
 
 void Window::SetPixel(int32 x, int32 y, int32 color) 
 {
-    if (y < 0 || x < 0) return;
+    if ((y < 0 || y >= height_) || (x < 0 || x >= width_)) return;
 
-    x = std::min<int32>(x, width_ - 1);
-    y = std::min<int32>(y, height_ - 1);
     frame_buffer_[y][x] = color;
 }
 
-void Window::DispatchWinMessage() 
+void Window::DispatchWinMessage()
 {
     MSG msg;
     while (1) 

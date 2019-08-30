@@ -23,9 +23,8 @@ public:
     static const Color ORANGE;
     static const Color GRAY;
 
-    Color()
+    Color() : r(0), g(0), b(0)
     {
-        Set(0, 0, 0);
     }
 
     Color(uint8 vr, uint8 vg, uint8 vb)
@@ -34,8 +33,8 @@ public:
     }
 
     Color(const Color& other)
+        : r(other.r), g(other.g), b(other.b)
     {
-        *this = other;
     }
 
     Color& operator =(const Color& other)

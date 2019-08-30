@@ -9,13 +9,24 @@ namespace unc
 class Random
 {
 public:
-    //template <typename T>
-    static int32 Get(int32 min, int32 max)
+    static int32 GetInt32(int32 min, int32 max)
     {
-        /*std::default_random_engine engine(std::random_device());
-        std::uniform_int_distribution<int32> uniform_dist(min, max);
-        return uniform_dist(engine);*/
-        return std::rand() % max;
+        if (min > max)
+        {
+            std::swap(min, max);
+        }
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<int32> distributor(min, max);
+        return distributor(gen);
+    }
+    
+    static float GetFloat(float min, float max)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> distributor(min, max);
+        return distributor(gen);
     }
 };
 

@@ -17,7 +17,7 @@ public:
 
     void DrawTrangleWireframe(const std::vector<unc::Point>& point_list);
 
-    void DrawTrangle(const std::vector<unc::Point>& point_list);
+    bool DrawTrangle(const std::vector<unc::Point>& point_list);
 
     void ClearWindow();
 

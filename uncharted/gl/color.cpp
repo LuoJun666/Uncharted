@@ -9,6 +9,6 @@ namespace unc
     const Color Color::RED    (255,   0,   0);
     const Color Color::MAGENTA(255,   0, 255);
     const Color Color::BLACK  (  0,   0,   0);
-    const Color Color::ORANGE (255, 127,   0);
-    const Color Color::GRAY   (166, 166, 166);
+    const Color Color::ORANGE (255, 128,   0);
+    const Color Color::GRAY   (240, 240, 240);
 };

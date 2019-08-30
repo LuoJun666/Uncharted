@@ -12,20 +12,18 @@ public:
 
 public:
     Vector3()
+        : x(0.0f), y(0.0f), z(0.0f)
     {
-        Set(0.0f, 0.0f, 0.0f);
     }
     
     explicit Vector3(float v)
+        : x(v), y(v), z(v)
     {
-        x = v;
-        y = v;
-        z = v;
     }
 
     Vector3(float vx, float vy, float vz)
+        : x(vx), y(vy), z(vz)
     {
-        Set(vx, vy, vz);
     }
 
     Vector3(int32 vx, int32 vy, int32 vz)
@@ -42,17 +40,19 @@ public:
         z = 0;
     }
 
+    Vector3(const Vector3& other)
+    {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+
     Vector3& operator =(const Vector3& other)
     {
         x = other.x;
         y = other.y;
         z = other.z;
         return *this;
-    }
-
-    Vector3(const Vector3& other)
-    {
-        *this = other;
     }
 
     void Set(int32 vx, int32 vy, int32 vz)
@@ -69,35 +69,45 @@ public:
         z = vz;
     }
 
-    Vector3 operator +(float v) const
-    {
-        return Vector3(x + v, y + v, z + v);
-    }
-
-    Vector3 operator -(float v) const
-    {
-        return Vector3(x - v, y - v, z - v);
-    }
-
+    /**
+     *  向量与标量乘法
+     */
     Vector3 operator *(float v) const
     {
         return Vector3(x * v, y * v, z * v);
     }
 
+    /**
+    *  向量与标量除法
+    */
     Vector3 operator /(float v) const
     {
-        float s = 1 / v;
+        const float s = 1 / v;
         return Vector3(x * s, y * s, z * s);
     }
 
-    Vector3 operator +(const Vector3& v) const
+    /**
+     *  向量加法
+     */
+    Vector3 operator +(const Vector3& other) const
     {
-        return Vector3(x + v.x, y + v.y, z + v.z);
+        return Vector3(x + other.x, y + other.y, z + other.z);
     }
 
-    Vector3 operator -(const Vector3& v) const
+    /**
+     *  向量减法， 定义为加负向量
+     */
+    Vector3 operator -(const Vector3& other) const
     {
-        return Vector3(x - v.x, y - v.y, z - v.z);
+        return Vector3(*this + other.Negate());
+    }
+
+    /**
+     *  向量取负
+     */
+    Vector3 Negate() const
+    {
+        return Vector3(-x, -y, -z);
     }
 
     /**

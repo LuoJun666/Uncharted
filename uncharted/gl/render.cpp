@@ -38,7 +38,7 @@ void Render::DrawLine(const Point& start, const Point& end)
     int32 error = delta_x / 2;
     int32 y = y0;
     int32 y_step = y0 < y1 ? 1 : -1;
-    
+
     for (int32 x = x0; x <= x1; ++x)
     {
         if (steep)
@@ -68,7 +68,7 @@ void Render::DrawTrangleWireframe(const std::vector<Point>& point_list)
     DrawLine(point_list[1], point_list[2]);
 }
 
-void Render::DrawTrangle(const std::vector<unc::Point>& point_list)
+bool Render::DrawTrangle(const std::vector<unc::Point>& point_list)
 {
     // 三角形三个顶点
     const Point& v0 = point_list[0];
@@ -76,11 +76,12 @@ void Render::DrawTrangle(const std::vector<unc::Point>& point_list)
     const Point& v2 = point_list[2];
 
     // 计算三角形包围矩形
-    int32 min_x = (int32)std::min<float>(std::min<float>(v0.GetPosition().x, v1.GetPosition().x), v2.GetPosition().x);
-    int32 min_y = (int32)std::min<float>(std::min<float>(v0.GetPosition().y, v1.GetPosition().y), v2.GetPosition().y);
-    int32 max_x = (int32)std::max<float>(std::max<float>(v0.GetPosition().x, v1.GetPosition().x), v2.GetPosition().x);
-    int32 max_y = (int32)std::max<float>(std::max<float>(v0.GetPosition().y, v1.GetPosition().y), v2.GetPosition().y);
+    const int32 min_x = (int32)std::min<float>(std::min<float>(v0.GetPosition().x, v1.GetPosition().x), v2.GetPosition().x);
+    const int32 min_y = (int32)std::min<float>(std::min<float>(v0.GetPosition().y, v1.GetPosition().y), v2.GetPosition().y);
+    const int32 max_x = (int32)std::max<float>(std::max<float>(v0.GetPosition().x, v1.GetPosition().x), v2.GetPosition().x);
+    const int32 max_y = (int32)std::max<float>(std::max<float>(v0.GetPosition().y, v1.GetPosition().y), v2.GetPosition().y);
 
+    // 根据给定三角形顶点v,q, 和待检测顶点p, 计算向量vq与vp的叉乘
     auto CaluateVecCrossProduct = [](const Point& v, const Point& q, const Point& p) -> float
     {
         Vector3 vq;
@@ -92,13 +93,12 @@ void Render::DrawTrangle(const std::vector<unc::Point>& point_list)
         vp.x = p.GetPosition().x - v.GetPosition().x;
         vp.y = p.GetPosition().y - v.GetPosition().y;
         vp.z = 0;
-
-        Vector3 ret = vq.CrossProduct(vp);
-        return ret.z;
+        
+        return vq.x * vp.y - vq.y * vp.x;
     };
 
     // 计算三角形面积 = 顶点v0和顶点v1,v2构成的向量的叉积 / 2
-    float area = CaluateVecCrossProduct(v0, v1, v2);
+    const float area = CaluateVecCrossProduct(v0, v1, v2);
 
     // 遍历包围矩形中的点
     for (int32 x = min_x; x <= max_x; ++x)
@@ -108,24 +108,26 @@ void Render::DrawTrangle(const std::vector<unc::Point>& point_list)
             Point p(Vector3(x, y, 0));
 
             // 检测点是否在三角形中
-            float exact = 1E-8f;
-            float e0 = CaluateVecCrossProduct(v0, v1, p) / area;
-            float e1 = CaluateVecCrossProduct(v1, v2, p) / area;
-            float e2 = CaluateVecCrossProduct(v2, v0, p) / area;
-            
-            // 颜色插值
-            if ((e0 >= 0 && e1 >= 0 && e2 >=0)
-                || (e0 <= 0 && e1 <= 0 && e2 <= 0))
-            {
-                Color color;
-                color.r = (uint8)(e0 * v0.GetColor().r + e1 * v1.GetColor().r + e2 * v2.GetColor().r);
-                color.g = (uint8)(e0 * v0.GetColor().g + e1 * v1.GetColor().g + e2 * v2.GetColor().g);
-                color.b = (uint8)(e0 * v0.GetColor().b + e1 * v1.GetColor().b + e2 * v2.GetColor().b);
+            float e0 = CaluateVecCrossProduct(v1, v2, p) / area;
+            if (e0 < 0) continue;
 
-                window_->SetPixel(x, y, color.GetInt32());
-            }
+            float e1 = CaluateVecCrossProduct(v2, v0, p) / area;
+            if (e1 < 0) continue;
+
+            float e2 = CaluateVecCrossProduct(v0, v1, p) / area;
+            if (e2 < 0) continue;
+ 
+            // 颜色插值
+            Color color;
+            color.r = (uint8)(e0 * v0.GetColor().r + e1 * v1.GetColor().r + e2 * v2.GetColor().r);
+            color.g = (uint8)(e0 * v0.GetColor().g + e1 * v1.GetColor().g + e2 * v2.GetColor().g);
+            color.b = (uint8)(e0 * v0.GetColor().b + e1 * v1.GetColor().b + e2 * v2.GetColor().b);
+
+            window_->SetPixel(x, y, color.GetInt32());
         }
     }
+    
+    return true;
 }
 
 void Render::ClearWindow()

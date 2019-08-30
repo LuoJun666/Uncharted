@@ -36,6 +36,7 @@ int main()
 
             sample->Run();
             window->Update();
+            //Sleep(1000 * 20);
         }
         else
         {
